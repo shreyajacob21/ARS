@@ -43,4 +43,20 @@ public class FlightDBInterface
 			e.printStackTrace();
 		}
 	}
+
+	public void searchFlight(String flightNo) {
+		try {
+			ResultSet rs = st.executeQuery("select * from flight where flightid = '"+flightNo+"'");
+			rs.next();
+			System.out.println("Flight No : " +rs.getString("flightid"));
+			System.out.println("Airlines : "+rs.getString("airlines"));
+			System.out.println("Class : "+rs.getString("class"));
+			System.out.println("Departure City : "+rs.getString("source"));
+			System.out.println("Arrival City : "+rs.getString("destination"));
+			System.out.println("Capacity : "+rs.getInt("capacity"));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

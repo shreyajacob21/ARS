@@ -42,8 +42,20 @@ public class FlightScheduleDBInterface {
 				System.out.println(rs.getString("flightid")+"\t"+rs.getString("date")+"\t"+rs.getString("departuretime")+"\t"+rs.getString("arrivaltime")+"\t"+rs.getString("availability")+"\t"+rs.getInt("amount"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void rescheduleFlight(FlightSchedule flightSchedule) {
+		try {
+			st.executeUpdate("Update flightschedule set date = '"+flightSchedule.getDate()+"' where flightid = '"+flightSchedule.getName()+"'");
+			st.executeUpdate("Update flightschedule set departuretime = '"+flightSchedule.getDeparture()+"'where flightid = '"+flightSchedule.getName()+"'");
+			st.executeUpdate("Update flightschedule set arrivaltime = '"+flightSchedule.getArrival()+"'where flightid = '"+flightSchedule.getName()+"'");
+			st.executeUpdate("Update flightschedule set amount = '"+flightSchedule.getAmount()+"'where flightid = '"+flightSchedule.getName()+"'");
+			System.out.println("Flight Rescheduled");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

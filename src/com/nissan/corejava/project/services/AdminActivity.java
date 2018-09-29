@@ -17,19 +17,20 @@ public class AdminActivity implements IAdminActivity{
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		do{
-			System.out.println("1.Add new flight\n2.Schedule flights\n3.Cancel a flight\n4.Reschedule flight\n5.View Flight Details\n6.View Flight Schedule\n7.View Bookings\n8.Change Password\n9.Exit");
+			System.out.println("1.Add new flight\n2.Edit flight details\n3.Schedule flights\n4.Cancel a flight\n5.Reschedule flight\n6.View Flight Details\n7.View Flight Schedule\n8.View Bookings\n9.Change Password\n10.Exit");
 			int choice = input.nextInt();
 			switch(choice)
 			{
 				case 1 : add();break;
-				case 2 : schedule();break;
-				case 3 : cancel();break;
-				case 4 : reschedule();break;
-				case 5 : view();break;
-				case 6 : viewSchedule();break;
-				case 7 : viewBookings();break;
-				case 8 : changePassword();break;
-				case 9 : return;
+				case 2 : edit();break;
+				case 3 : schedule();break;
+				case 4 : cancel();break;
+				case 5 : reschedule();break;
+				case 6 : view();break;
+				case 7 : viewSchedule();break;
+				case 8 : viewBookings();break;
+				case 9 : changePassword();break;
+				case 10 : return;
 			}
 		}while(true);
 	}
@@ -81,15 +82,28 @@ public class AdminActivity implements IAdminActivity{
 		
 	}
 
+	//Edit details of flight
 	@Override
 	public void edit() {
-		// TODO Auto-generated method stub
+		@SuppressWarnings("resource")
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter flight number");
+		String flightNo = input.nextLine();
+		FlightDBInterface flightDb = new FlightDBInterface();
+		flightDb.searchFlight(flightNo);
+		System.out.println("Enter option to edit :\n1.Airlines\n2.Class\n3.Departure City\n4.Arrival City\n5.Capacity");
+		int choice = input.nextInt();
+		switch(choice)
+		{
+		case 1 : 
+		}
 		
 	}
 
 	//get details for reschedule
 	@Override
-	public void reschedule() {
+	public void reschedule() 
+	{
 		FlightSchedule flightSchedule = new FlightSchedule();
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
@@ -98,11 +112,13 @@ public class AdminActivity implements IAdminActivity{
 		System.out.println("Enter new date");
 		flightSchedule.setDate(input.nextLine());
 		System.out.println("Enter new departure time");
-		flightSchedule.setDate(input.nextLine());
+		flightSchedule.setDeparture(input.nextLine());
 		System.out.println("Enter new arrival time");
 		flightSchedule.setArrival(input.nextLine());
 		System.out.println("Enter new amount");
 		flightSchedule.setAmount(input.nextInt());
+		FlightScheduleDBInterface flightScheduleDb = new FlightScheduleDBInterface();
+		flightScheduleDb.rescheduleFlight(flightSchedule);
 	}
 
 	@Override
