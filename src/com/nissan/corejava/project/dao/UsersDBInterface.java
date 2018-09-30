@@ -2,7 +2,7 @@ package com.nissan.corejava.project.dao;
 
 import java.sql.*;
 
-import com.nissan.corejava.project.utilities.User;
+import com.nissan.corejava.project.model.User;
 
 public class UsersDBInterface {
 	Statement st;
@@ -26,4 +26,28 @@ public class UsersDBInterface {
 			e.printStackTrace();
 		}
 	}
+	public void editName(String name,String userName){
+		try {
+			st.executeUpdate("Update users set name = '"+name+"' where username='"+userName+"'");
+			System.out.println("Name Updated");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+    public void editMailId(String mail,String userName){
+    	try {
+			st.executeUpdate("Update users set email = '"+mail+"' where username='"+userName+"'");
+			System.out.println("Mail Id Updated");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+    public void editPhoneNo(String phoneNo,String userName){
+    	try {
+			st.executeUpdate("Update users set phoneno= '"+phoneNo+"' where username='"+userName+"'");
+			System.out.println("PhoneNo Updated");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+    }
 }

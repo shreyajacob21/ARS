@@ -1,4 +1,4 @@
-package com.nissan.corejava.project.utilities;
+package com.nissan.corejava.project.services;
 
 import java.sql.SQLException;
 
@@ -7,10 +7,10 @@ import com.nissan.corejava.project.dao.*;
 public class AdminLogin extends Login{
 	static int count = 0;
 	@Override
-	public boolean verify() 
+	public String verify() 
 	{
 		
-		boolean result=false;
+		String result=null;
 		try {
 			AdminLoginDBInterface adm = new AdminLoginDBInterface();
 			result = adm.verifyAdmin(getUserName(),getPassword());

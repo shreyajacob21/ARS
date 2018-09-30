@@ -1,8 +1,10 @@
 package com.nissan.corejava.project.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.nissan.corejava.project.utilities.FlightSchedule;
+import com.nissan.corejava.project.model.FlightSchedule;
 
 public class FlightScheduleDBInterface {
 
@@ -57,5 +59,32 @@ public class FlightScheduleDBInterface {
 			e.printStackTrace();
 		}
 		
+	}
+	public String show(String date,List<String> list,int no){
+		try {
+			ResultSet rs = st.executeQuery("select * from schedule");
+			List<Integer> sch=new ArrayList<Integer>(50);
+			while(rs.next())
+			{
+		     for(String s:list){
+		    	 if(s.equals(rs.getString(2))){
+		    		 sch.add(rs.getInt(1));
+		    	 }
+		     }
+			}
+			//revert back to the start of resultset
+			rs.beforeFirst();
+			while(rs.next()){
+				for(int i:sch){
+					if(i==rs.getInt(1))
+						if(rs.getInt(5)>no)
+					System.out.println(rs.getInt(1)+"\t"+rs.getString(3)+"\t"+rs.getString(4)+"\t"+rs.getInt(5));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

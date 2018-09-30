@@ -1,4 +1,4 @@
-package com.nissan.corejava.project.utilities;
+package com.nissan.corejava.project.services;
 /*interface for administrator activity which can be implemented for flight/bus/train 
   reservation system */
 public interface IAdminActivity {

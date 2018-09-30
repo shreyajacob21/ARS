@@ -11,14 +11,14 @@ public class AdminLoginDBInterface {
 		st = con.createStatement();
 	}
 	//Verify admin login credentials
-	public boolean verifyAdmin(String userName,String password) throws SQLException, ClassNotFoundException
+	public String verifyAdmin(String userName,String password) throws SQLException, ClassNotFoundException
 	{		
 		ResultSet rs = st.executeQuery("select * from adminlogin where username = '"+ userName+"'");
 		rs.next();
 		if(rs.getString(3).equals(password))
-			return true;
+			return userName;
 		else
-			return false;
+			return null;
 	}
 	//Change password of admin
 	public void passwordChange(String newPassword)

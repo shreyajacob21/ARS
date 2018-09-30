@@ -1,4 +1,4 @@
-package com.nissan.corejava.project.utilities;
+package com.nissan.corejava.project.services;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import com.nissan.corejava.project.dao.UserLoginDBInterface;
 import com.nissan.corejava.project.dao.UsersDBInterface;
 import com.nissan.corejava.project.exceptions.UserDefinedException;
+import com.nissan.corejava.project.model.User;
 
 public class UserRegistration {
 	//Registers a new user with the details provided
@@ -67,8 +68,6 @@ public class UserRegistration {
 					UsersDBInterface usersDb = new UsersDBInterface();
 					usersDb.saveUserDetails(user);
 				} catch (SQLException e) {
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
 				

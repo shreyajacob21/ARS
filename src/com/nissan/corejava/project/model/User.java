@@ -1,4 +1,4 @@
-package com.nissan.corejava.project.utilities;
+package com.nissan.corejava.project.model;
 
 public class User {
 	private String name;

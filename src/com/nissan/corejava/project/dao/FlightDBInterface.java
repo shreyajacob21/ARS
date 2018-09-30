@@ -1,8 +1,10 @@
 package com.nissan.corejava.project.dao;
 
+import java.util.List;
 import java.sql.*;
+import java.util.ArrayList;
 
-import com.nissan.corejava.project.utilities.Flight;
+import com.nissan.corejava.project.model.Flight;
 
 public class FlightDBInterface 
 {
@@ -39,7 +41,6 @@ public class FlightDBInterface
 				System.out.println(rs.getString("flightid")+"\t"+rs.getString("airlines")+"\t"+rs.getString("class")+"\t"+rs.getString("source")+"\t"+rs.getString("destination")+"\t"+rs.getInt("capacity"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -58,5 +59,37 @@ public class FlightDBInterface
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void editFlightDetails(String option, String newValue,String flightNo) {
+		try {
+			if(option.equals("capacity"))
+				{
+					int capacity = Integer.parseInt(newValue);
+					st.executeUpdate("Update flight set " + option + "='"+ capacity+"' where flightid = '"+flightNo+"'");
+				}
+			else
+				st.executeUpdate("Update flight set " + option + "='"+ newValue+"' where flightid = '"+flightNo+"'");
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	public List<String> show(String src,String dest){
+		List<String> ar =new ArrayList<String>(50);
+		try {
+			ResultSet rs = st.executeQuery("select flightid from flight where source='"+src+"'"+"AND destination='"+dest+"'");
+			while(rs.next())
+			{
+			ar.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ar;
+		
 	}
 }

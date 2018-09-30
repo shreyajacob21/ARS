@@ -6,9 +6,8 @@ import java.util.Scanner;
 import com.nissan.corejava.project.dao.AdminLoginDBInterface;
 import com.nissan.corejava.project.dao.FlightDBInterface;
 import com.nissan.corejava.project.dao.FlightScheduleDBInterface;
-import com.nissan.corejava.project.utilities.Flight;
-import com.nissan.corejava.project.utilities.FlightSchedule;
-import com.nissan.corejava.project.utilities.IAdminActivity;
+import com.nissan.corejava.project.model.Flight;
+import com.nissan.corejava.project.model.FlightSchedule;
 
 public class AdminActivity implements IAdminActivity{
 
@@ -52,7 +51,6 @@ public class AdminActivity implements IAdminActivity{
 			adminLoginDb = new AdminLoginDBInterface();
 			adminLoginDb.passwordChange(password);
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 	
 		
@@ -93,9 +91,17 @@ public class AdminActivity implements IAdminActivity{
 		flightDb.searchFlight(flightNo);
 		System.out.println("Enter option to edit :\n1.Airlines\n2.Class\n3.Departure City\n4.Arrival City\n5.Capacity");
 		int choice = input.nextInt();
+		input.nextLine();
+		System.out.println("Enter new value");
+		String newValue = input.nextLine();
 		switch(choice)
 		{
-		case 1 : 
+			case 1 : flightDb.editFlightDetails("airlines",newValue,flightNo);break;
+			case 2 : flightDb.editFlightDetails("class",newValue,flightNo);break;
+			case 3 : flightDb.editFlightDetails("source",newValue,flightNo);break;
+			case 4 : flightDb.editFlightDetails("destination",newValue,flightNo);break;
+			case 5 : flightDb.editFlightDetails("capacity",newValue,flightNo);break;
+			default:System.out.println("Invalid choice");
 		}
 		
 	}
@@ -121,9 +127,25 @@ public class AdminActivity implements IAdminActivity{
 		flightScheduleDb.rescheduleFlight(flightSchedule);
 	}
 
+	//Cancel a flight schedule
 	@Override
 	public void cancel() {
-		// TODO Auto-generated method stub
+		/*FlightSchedule flightSchedule = new FlightSchedule();
+		@SuppressWarnings("resource")
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter flight ID");
+		flightSchedule.setName(input.nextLine());
+		System.out.println("Enter Date");
+		flightSchedule.setDate(input.nextLine());
+		
+		try{
+			int capacity;
+			int availability;
+			if(((capacity-availability)/capacity)<0.25)
+				flightSchedule.cancelSchedule(id);
+		}
+		catch(Exception e)
+		{}*/
 		
 	}
 

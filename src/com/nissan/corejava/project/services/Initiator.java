@@ -1,14 +1,14 @@
-package com.nissan.corejava.project.utilities;
+package com.nissan.corejava.project.services;
 
 import java.util.Scanner;
 import com.nissan.corejava.project.exceptions.UserDefinedException;
-import com.nissan.corejava.project.services.AdminActivity;
 
 public class Initiator {
 
 	public static void main(String[] args)
 	{
-		boolean success,logged;
+		boolean logged;
+		String success;
 		int choice;
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
@@ -23,7 +23,7 @@ public class Initiator {
 							 adminLogin.inputUserCredentials();
 							 success = adminLogin.verify();
 							 try{
-								 if(success)
+								 if(success!=null)
 								 {
 									 System.out.println("Login SUCCESSFUL!");
 									 AdminLogin.count = 0;
@@ -54,9 +54,10 @@ public class Initiator {
 					 			 
 								 success = userLogin.verify();
 								 try{
-									 if(success)
+									 if(success!=null)
 									 {
 										 System.out.println("Login SUCCESSFUL!");
+										 UserActivity.main(success);
 										 UserLogin.count = 0;
 										 logged = true;
 									 }

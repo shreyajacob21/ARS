@@ -1,4 +1,4 @@
-package com.nissan.corejava.project.utilities;
+package com.nissan.corejava.project.services;
 
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ public abstract class Login {
 		 System.out.println("Input password");
 		 setPassword(input.nextLine());
 	}
-	public abstract boolean verify() ;
+	public abstract String verify() ;
 	public String getUserName() {
 		return userName;
 	}
