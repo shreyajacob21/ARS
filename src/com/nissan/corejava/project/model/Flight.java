@@ -1,5 +1,6 @@
 package com.nissan.corejava.project.model;
 
+//model class for flights
 public class Flight {
 	
 	private String name;
